@@ -1,0 +1,176 @@
+/* utilities */
+
+.hide-in-phone {
+  display: none;
+  @media(min-width: $limit-w-pc) {
+    display: block;
+  }
+}
+
+// text
+.txt-l {
+  text-align: left;
+}
+.txt-c {
+  text-align: center;
+}
+.txt-r {
+  text-align: right;
+}
+.txt-j {
+  text-align: justify;
+}
+
+// flex utility
+//-- row, left, center
+.flex-rlc {
+  @include flex-rlc;
+}
+//-- row, center, bottom
+.flex-rlb {
+  @include flex-rlb;
+}
+//-- row, center, top
+.flex-rct {
+  @include flex-rct;
+}
+//-- row, center, center
+.flex-rcc {
+  @include flex-rcc;
+}
+//-- row, center, bottom
+.flex-rcb {
+  @include flex-rcb;
+}
+//-- row, right, top
+.flex-rrt {
+  @include flex-rrt;
+}
+//-- row, right, center
+.flex-rrc {
+  @include flex-rrc;
+}
+//-- row, right, bottom
+.flex-rrb {
+  @include flex-rrb;
+}
+//-- row, space-around, top
+.flex-rsat {
+  @include flex-rsat;
+}
+//-- row, space-around, center
+.flex-rsac {
+  @include flex-rsac;
+}
+//-- row, space-around, bottom
+.flex-rsab {
+  @include flex-rsab;
+}
+//-- row, space-between, top
+.flex-rsbt {
+  @include flex-rsbt;
+}
+//-- row, space-between, center
+.flex-rsbc {
+  @include flex-rsbc;
+}
+//-- row, space-between, bottom
+.flex-rsbb {
+  @include flex-rsbb;
+}
+
+//-- column, top, left
+.flex-ctl {
+  @include flex-ctl;
+}
+//-- column, top, center
+.flex-ctc {
+  @include flex-ctc;
+}
+//-- column, top, right
+.flex-ctr {
+  @include flex-ctr;
+}
+//-- column, center, left
+.flex-ccl {
+  @include flex-ccl;
+}
+//-- column, center, center
+.flex-ccc {
+  @include flex-ccc;
+}
+//-- column, center, right
+.flex-ccr {
+  @include flex-ccr;
+}
+//-- column, center, space-between
+.flex-ccsb {
+  @include flex-ccsb;
+}
+//-- column, space-around, left
+.flex-csal {
+  @include flex-csal;
+}
+//-- column, space-around, center
+.flex-csac {
+  @include flex-csac;
+}
+//-- column, space-around, right
+.flex-csar {
+  @include flex-csar;
+}
+//-- column, space-between, left
+.flex-csbl {
+  @include flex-csbl;
+}
+//-- column, space-between, center
+.flex-csbc {
+  @include flex-csbc;
+}
+//-- column, space-between, right
+.flex-csbr {
+  @include flex-csbr;
+}
+
+//-- flex number
+.flex-1 {
+  flex: 1;
+}
+.flex-2 {
+  flex: 2;
+}
+.flex-3 {
+  flex: 3;
+}
+.flex-4 {
+  flex: 4;
+}
+.flex-5 {
+  flex: 5;
+}
+
+
+
+// layout
+.remove-m {
+  margin: 0;
+}
+.remove-p {
+  padding: 0;
+}
+.full-w {
+  width: 100%;
+}
+.full-h {
+  height: 100%;
+}
+.full-wh {
+  width: 100%;
+  height: 100%;
+}
+
+// vee-validate
+.is-danger {
+  border-color: red;
+  color: red;
+}
