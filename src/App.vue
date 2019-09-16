@@ -1,12 +1,5 @@
 <template>
-  <div id="app">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about" class="mr-auto">About</router-link>
-      </nav>
-    </div>
+  <div id="app" class="full-wh">
     <router-view/>
   </div>
 </template>
