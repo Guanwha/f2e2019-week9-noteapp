@@ -7,7 +7,7 @@
       <div class="btn-list" disabled></div>
     </div>
     <!-- notes -->
-    <div class="content full-wh flex-csbc">
+    <div class="content full-wh flex-ctc">
       <div class="content-header">
         <div class="title">所有筆記</div>
         <div class="description">{{noteDescription}}</div>
