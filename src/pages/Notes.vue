@@ -17,12 +17,10 @@
              v-for='(note, key) in notes'
              :key= key
         >
-          <div class="note-header flex-rsbc">
-            <div class="title">{{note.title}}</div>
-            <div :class="['star', {'disabled': !note.star}]"
-                 @click='switchStar(key)'
-            />
-          </div>
+          <div class="note-title">{{note.title}}</div>
+          <div :class="['star', {'disabled': !note.star}]"
+                @click='switchStar(key)'
+          />
           <div class="note-article">{{note.article}}</div>
         </div>
       </div>
@@ -160,34 +158,35 @@ export default {
 .notes {
   @include px(0.5rem);
 }
+$square-w: 10rem;
+$square-padding: 1rem;
+$star-w: 1rem;
 .note-item-square {
   display: float;
   float: left;
-  width: 10rem;
-  height: 10rem;
+  width: $square-w;
+  height: $square-w;
   border-radius: 0.5rem;
   box-shadow: 0px 4px 10px #0000001A;
   @include mx(0.5rem);
   @include my(1rem);
-  @include px(1rem);
-  @include py(1.2rem);
+  @include px($square-padding);
+  @include py($square-padding);
   position: relative;
   text-align: justify;
   background: $clr-white;
-  .note-header {
-    max-width: 10rem - 1.2rem*2 - 1rem;
+  .note-title {
+    max-width: $square-w - $square-padding*2 - 2rem;
     margin-bottom: 0.5rem;
+    color: $clr-font-title;
+    font-size: $f-size-2;
+    line-height: 1.5;
     overflow: hidden;
-    .title {
-      color: $clr-font-title;
-      font-size: $f-size-2;
-      line-height: 1.5;
-      white-space: nowrap;
-    }
+    white-space: nowrap;
   }
   .note-article {
-    width: 10rem - 1.2rem*2;
-    height: 10rem - 1rem*2;
+    width: $square-w - $square-padding*2;
+    height: $square-w - $square-padding*2;
     overflow: hidden;
     color: $clr-font-content;
     font-size: $f-size-1;
@@ -200,8 +199,8 @@ export default {
   background-image: url('../assets/btn_star.svg');
   background-size: cover;
   position: absolute;
-  right: 1.2rem;
-  top: 1rem + $f-size-2 * 0.125;
+  right: $square-padding;
+  top: $square-padding + $f-size-2 * 0.125;
   &.disabled {
     background-image: url('../assets/btn_star_uncheck.svg');
   }
