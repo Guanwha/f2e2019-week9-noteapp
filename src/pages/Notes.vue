@@ -12,8 +12,8 @@
         <div class="title">所有筆記</div>
         <div class="description">{{noteDescription}}</div>
       </div>
-      <div class="note-list">
-        <div class="note-block flex-ctl"
+      <div class="notes">
+        <div class="note-item-square flex-ctl"
              v-for='(note, key) in notes'
              :key= key
         >
@@ -157,10 +157,10 @@ export default {
     margin-top: 5%;
   }
 }
-.note-list {
+.notes {
   @include px(0.5rem);
 }
-.note-block {
+.note-item-square {
   display: float;
   float: left;
   width: 10rem;
@@ -185,18 +185,6 @@ export default {
       white-space: nowrap;
     }
   }
-  .star {
-    width: 16px;
-    height: 16px;
-    background-image: url('../assets/btn_star.svg');
-    background-size: cover;
-    position: absolute;
-    right: 1.2rem;
-    top: 1rem + $f-size-2 * 0.125;
-    &.disabled {
-      background-image: url('../assets/btn_star_uncheck.svg');
-    }
-  }
   .note-article {
     width: 10rem - 1.2rem*2;
     height: 10rem - 1rem*2;
@@ -204,6 +192,18 @@ export default {
     color: $clr-font-content;
     font-size: $f-size-1;
     line-height: 1.5;
+  }
+}
+.star {
+  width: 16px;
+  height: 16px;
+  background-image: url('../assets/btn_star.svg');
+  background-size: cover;
+  position: absolute;
+  right: 1.2rem;
+  top: 1rem + $f-size-2 * 0.125;
+  &.disabled {
+    background-image: url('../assets/btn_star_uncheck.svg');
   }
 }
 .btn-add {
