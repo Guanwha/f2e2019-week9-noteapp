@@ -3,8 +3,8 @@
     <!-- header bar -->
     <div class="header full-w flex-rsbc">
       <div class="btn-menu" disabled></div>
-      <div class="btn-block ml-auto" disabled></div>
-      <div class="btn-list" disabled></div>
+      <div class="btn-block ml-auto" @click="showBySquare"></div>
+      <div class="btn-list" @click="showByList"></div>
     </div>
     <!-- notes -->
     <div class="content full-wh flex-ctc">
@@ -13,15 +13,14 @@
         <div class="description">{{noteDescription}}</div>
       </div>
       <div class="notes">
-        <div class="note-item-square flex-ctl"
+        <div class="note-item flex-ctl"
+             :class="[(isShowSquare) ? 'square' : 'list']"
              v-for='(note, key) in notes'
              :key= key
         >
-          <div class="note-title">{{note.title}}</div>
-          <div :class="['star', {'disabled': !note.star}]"
-                @click='switchStar(key)'
-          />
-          <div class="note-article">{{note.article}}</div>
+          <div class="note-title" :class="[(isShowSquare) ? 'square' : 'list']">{{note.title}}</div>
+          <div :class="['star', {'disabled': !note.star}]" @click='switchStar(key)'/>
+          <div class="note-article" :class="[(isShowSquare) ? 'square' : 'list']">{{note.article}}</div>
         </div>
       </div>
     </div>
@@ -31,11 +30,13 @@
 </template>
 
 <script>
+import { notesDisplayMode } from '../common/constants';
 
 export default {
   name: 'Notes',
   data() {
     return {
+      displayMode: notesDisplayMode.SQUARE,
       notes: {
         11111: {
           title: '靈感隨手記',
@@ -83,6 +84,12 @@ export default {
     };
   },
   methods: {
+    showBySquare() {
+      this.displayMode = notesDisplayMode.SQUARE;
+    },
+    showByList() {
+      this.displayMode = notesDisplayMode.LIST;
+    },
     switchStar(key) {
       this.notes[key].star = !this.notes[key].star;
     },
@@ -91,6 +98,9 @@ export default {
     noteDescription() {
       const keys = Object.keys(this.notes);
       return (keys.length === 0) ? '這裡目前是空的' : `共有${keys.length}個筆記`;
+    },
+    isShowSquare() {
+      return (this.displayMode === notesDisplayMode.SQUARE);
     },
   },
 };
@@ -110,6 +120,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   overflow-y: auto;
+  padding-right: 1rem;
 }
 
 // in header
@@ -160,37 +171,57 @@ export default {
 }
 $square-w: 10rem;
 $square-padding: 1rem;
+$list-w: 100%;
+$list-h: 7rem;
+$list-padding: 1rem;
 $star-w: 1rem;
-.note-item-square {
+.note-item {
   display: float;
   float: left;
-  width: $square-w;
-  height: $square-w;
   border-radius: 0.5rem;
   box-shadow: 0px 4px 10px #0000001A;
   @include mx(0.5rem);
-  @include my(1rem);
+  @include my(0.5rem);
   @include px($square-padding);
   @include py($square-padding);
   position: relative;
   text-align: justify;
   background: $clr-white;
+  &.square {
+    width: $square-w;
+    height: $square-w;
+  }
+  &.list {
+    width: $list-w;
+    height: $list-h;
+  }
   .note-title {
-    max-width: $square-w - $square-padding*2 - 2rem;
     margin-bottom: 0.5rem;
     color: $clr-font-title;
     font-size: $f-size-2;
     line-height: 1.5;
     overflow: hidden;
     white-space: nowrap;
+    &.square {
+      max-width: $square-w - $square-padding*2 - 2rem;
+    }
+    &.list {
+      max-width: calc(#{$list-w} - #{$list-padding}*2 - 2rem);
+    }
   }
   .note-article {
-    width: $square-w - $square-padding*2;
-    height: $square-w - $square-padding*2;
     overflow: hidden;
     color: $clr-font-content;
     font-size: $f-size-1;
     line-height: 1.5;
+    &.square {
+      width: $square-w - $square-padding*2;
+      height: $square-w - $square-padding*2;
+    }
+    &.list {
+      width: calc(#{$list-w} - #{$list-padding}*2);
+      height: calc(#{$list-w} - #{$list-padding}*2);
+    }
   }
 }
 .star {
@@ -219,4 +250,7 @@ $star-w: 1rem;
     background: $clr-sub;
   }
 }
+
+// Customize scroll bar
+@include custom-scrollbar($clr-main, $clr-sub);
 </style>
