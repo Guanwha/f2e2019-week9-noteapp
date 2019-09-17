@@ -6,6 +6,11 @@
 
 export default {
   name: 'EditNote',
+  data() {
+    return {
+      noteID: this.$route.params.id,
+    };
+  },
 };
 </script>
 
