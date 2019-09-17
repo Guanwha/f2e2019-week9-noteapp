@@ -17,6 +17,7 @@
              :class="[(isShowSquare) ? 'square' : 'list']"
              v-for='(note, key) in notes'
              :key= key
+             @click='openNote(key)'
         >
           <div class="note-title" :class="[(isShowSquare) ? 'square' : 'list']">{{note.title}}</div>
           <div :class="['star', {'disabled': !note.star}]" @click='switchStar(key)'/>
@@ -25,7 +26,7 @@
       </div>
     </div>
     <!-- button -->
-    <div class="btn-add">New Note</div>
+    <div class="btn-add" @click='newNote'>New Note</div>
   </div>
 </template>
 
@@ -92,6 +93,15 @@ export default {
     },
     switchStar(key) {
       this.notes[key].star = !this.notes[key].star;
+    },
+    openNote(key) {
+      // this.$router.push({ name: 'note', params: { id: key, isNew: false } });
+      alert(`coming soon...\n\nopen the note ${this.notes[key].title}`);
+    },
+    newNote() {
+      // const key = new Date().getTime();
+      // this.$router.push({ name: 'editnote', params: { id: key, isNew: true } });
+      alert('coming soon...\n\ncreate a new note');
     },
   },
   computed: {
